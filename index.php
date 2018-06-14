@@ -1,6 +1,6 @@
 <?php
 ob_start();
-
+include './framework/core/init.php';
 
 $server_name = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'app.17k.com';
 
@@ -23,5 +23,5 @@ $method = strtoupper($method);
 
 
 if ($server_name == 'www.annisisi.com') {
-    include './application/config/route/photo.php';
+    include CONF . '/route/photo.php';
 }
