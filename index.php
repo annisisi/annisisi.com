@@ -21,7 +21,6 @@ if (isset($_REQUEST['_method'])) {
 $method == 'patch' && $method = 'put';
 $method = strtoupper($method);
 
-var_dump($server_name,$uri,$method); exit;
 
 if ($server_name == 'www.annisisi.com') {
     include './application/config/route/photo.php';
