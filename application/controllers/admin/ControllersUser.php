@@ -22,7 +22,7 @@ class ControllersUser
         $value = md5("admininfo");
         $logindata = $_COOKIE;
         if (isset($logindata["logindata"]) && $logindata["logindata"] == $value) {
-            Header("Location: login");
+            Header("Location: index");
             exit;
         }
         //$list = $this->client->index();
@@ -33,7 +33,12 @@ class ControllersUser
     //列表
     public function logindata()
     {
-        is_login();
+        $value = md5("admininfo");
+        $logindata = $_COOKIE;
+        if (isset($logindata["logindata"]) && $logindata["logindata"] == $value) {
+            Header("Location: index");
+            exit;
+        }
         $user = INPUT::getDate('user', '');
         $password = INPUT::getDate('password', '');
 
