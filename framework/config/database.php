@@ -6,7 +6,7 @@ $mysqldb = [
         'username' => 'root',
         'password' => '123456',
         'dbname' => 'test',
-        'char_set' => '',
+        'char_set' => 'utf8',
     ],
 ];
 
