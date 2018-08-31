@@ -19,7 +19,12 @@ class ControllersUser
     //主页
     public function login()
     {
-        is_login();
+        $value = md5("admininfo");
+        $logindata = $_COOKIE;
+        if (isset($logindata["logindata"]) && $logindata["logindata"] == $value) {
+            Header("Location: login");
+            exit;
+        }
         //$list = $this->client->index();
         Share::ShowSucc(['tpl' => 'admin.login','data' => []], 'html');
     }
