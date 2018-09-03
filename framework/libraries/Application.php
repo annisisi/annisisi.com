@@ -40,7 +40,7 @@ class Application
 
     private function route()
     {
-        $server_name = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'www.annisisi.com';
+
 
         //请求URI获取
         $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
@@ -60,10 +60,10 @@ class Application
 
 
         //路由文件
-        if ($server_name == 'www.annisisi.com') {
+        if (HTTP_HOST == 'www.annisisi.com') {
             $res = include CONF . '/route/photo.php';
             $this->list = 'home';
-        } elseif ($server_name == 'admin.annisisi.com') {
+        } elseif (HTTP_HOST == 'admin.annisisi.com') {
             $res = include CONF . '/route/admin.php';
             $this->list = 'admin';
         } else {

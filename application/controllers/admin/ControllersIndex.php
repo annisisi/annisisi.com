@@ -20,8 +20,11 @@ class ControllersIndex
     public function index()
     {
         is_login();
-        $list = $this->client->adminindex();
-        Share::ShowSucc(['tpl' => 'admin.index','data' => $list], 'html');
+        $page = INPUT::getDate('page', '1');
+        $num = INPUT::getDate('num', '20');
+
+        $lists = $this->client->adminindex($page, $num);
+        Share::ShowSucc(['tpl' => 'admin.index','data' => $lists], 'html');
     }
 
 
@@ -29,7 +32,15 @@ class ControllersIndex
     public function edit()
     {
         is_login();
-        Share::ShowSucc(['tpl' => 'admin.edit','data' => []], 'html');
+        $id = INPUT::getDate('id', '0');
+
+        if ($id <= 0) {
+            $lists = [];
+        } else {
+            $lists = $this->client->adminone($id);
+        }
+
+        Share::ShowSucc(['tpl' => 'admin.edit','data' => $lists], 'html');
     }
 
     //添加
@@ -41,32 +52,8 @@ class ControllersIndex
         $text = INPUT::getDate('text', '');
         $title = INPUT::getDate('title', '');
         $label = INPUT::getDate('label', '');
-
-        if (empty($text) || empty($title) || empty($label)) {
-            return false;
-        }
-
-        $file = $_FILES['img'];
-        $type_arr = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
-        if (!in_array($file['type'], $type_arr)) {
-            return false;
-        }
-
-        if ($file['size'] > 2097152) {
-            return false;
-        }
-
-        $dir_path = UPLOADS;
-        if (!is_dir($dir_path)) {
-            mkdir($dir_path, 0755, true);
-        }
-
-        $file_path = $dir_path . '/' . $file['name'];
-
-        if (!move_uploaded_file($file['tmp_name'], $file_path)) {
-            return false;
-        }
-        $img = 'http://www.annisisi.com/uploads/'. $file['name'];
+        $img = INPUT::getDate('img', '');
+        $id = INPUT::getDate('id', '0');
 
         $serach = [
             'state' => $state,
@@ -77,8 +64,15 @@ class ControllersIndex
             'label' => $label,
         ];
 
-        $this->client->edit($serach);
-        Share::ShowSucc(['tpl' => 'home.single','data' => []], 'html');
+        if ($id <= 0) {
+            $this->client->edit($serach);
+        } else {
+            $this->client->updatedata($id, $serach);
+        }
+
+        echo '成功,3秒返回';
+        header("refresh:3;url=http://" . HTTP_HOST . '/index');
     }
+
 }
 

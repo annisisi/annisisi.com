@@ -19,8 +19,8 @@ class ControllersIndex
     //主页
     public function index()
     {
-        $list = $this->client->index();
-        Share::ShowSucc(['tpl' => 'home.index','data' => $list], 'html');
+        $lists = $this->client->index();
+        Share::ShowSucc(['tpl' => 'home.index','data' => $lists], 'html');
     }
 
 

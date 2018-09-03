@@ -7,9 +7,13 @@ return [
         'create' => 'Index@create',
         'update' => 'Index@update',
         'delete' => 'About@delete',
+        'imglist' => 'Img@index',
+        'img/upload' => 'Img@upload',
     ],
     'POST' => [
         'login' => 'User@logindata',
         'edit' => 'Index@editdata',
+        'img/delete' => 'Img@delete',
+        'img/upload' => 'Img@uploaddata',
     ],
 ];

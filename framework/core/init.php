@@ -12,5 +12,9 @@ define('FRANE', BASE_PATH . '/framework');
 
 define('UPLOADS', BASE_PATH . '/public/uploads');
 
+define('IMG', BASE_PATH . '/public/images');
+
+
+define('HTTP_HOST', isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'www.annisisi.com');
 
 

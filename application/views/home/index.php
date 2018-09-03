@@ -79,7 +79,7 @@
 			<div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">
 
                 <?php
-                foreach ($data['data'] as $value)
+                foreach ($data['data']['lists'] as $value)
                 {
                 ?>
                     <div class="fh5co-project masonry-brick">

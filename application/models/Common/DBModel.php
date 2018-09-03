@@ -36,16 +36,31 @@ class DBModel
             $order = 'GROUP BY ' . $order;
         }
 
-//        $sqlcount = "SELECT COUNT(1) AS num FROM {$this->table} WHERE {$wherestr}  {$order} {$group}";
-//        $res = $this->handle->query($sqlcount, $this->database);
-//
-//        if (isset($res[0]['num'])) {
-//
-//        }
+        $sql = "SELECT  COUNT(*) as num FROM {$this->table} WHERE {$wherestr['str']} {$order} {$group} " ;
 
-        $start = ($page - 1) * $num;
-        $sql = "SELECT {$str} FROM {$this->table} WHERE {$wherestr['str']} {$order} {$group} LIMIT {$start},{$num}" ;
-        $date = $this->handle->query($sql,$wherestr['value'], $this->database);
+        $count = $this->handle->query($sql,$wherestr['value'], $this->database);
+
+        if ($count[0]['num'] > 0) {
+            $start = ($page - 1) * $num;
+            $sql = "SELECT {$str} FROM {$this->table} WHERE {$wherestr['str']} {$order} {$group} LIMIT {$start},{$num}" ;
+            $date['lists'] = $this->handle->query($sql,$wherestr['value'], $this->database);
+            $date['other'] = [
+                'count' => $count[0]['num'],
+                'count_page' => ceil($count[0]['num'] / $num),
+                'page' => $page,
+                'num' => $num,
+            ];
+        } else {
+            $date['lists'] = [];
+            $date['other'] = [
+                'count' => 0,
+                'count_page' => 0,
+                'page' => $page,
+                'num' => $num,
+            ];
+        }
+
+
 
         return $date;
     }
@@ -78,7 +93,7 @@ class DBModel
         foreach ($serach as $key => $value)
         {
             $str_arr[] = "`{$key}`";
-            $val_arr[] = "?";
+            $val_arr[] = ":{$key}";
         }
         $str = implode(',', $str_arr);
         $val = implode(',', $val_arr);
@@ -94,14 +109,16 @@ class DBModel
         $wherestr = $this->handle->wherestr($serach);
 
         $str_arr = [];
+        $val_arr = [];
         foreach ($attributes as $key => $value)
         {
-            $str_arr[] = "{$key} = '{$value}'";
+            $str_arr[] = "{$key} = :{$key}";
+            $val_arr[$key] = $value;
         }
         $str = implode(',', $str_arr);
 
         $sql = "UPDATE {$this->table} SET {$str} WHERE {$wherestr['str']}";
-        $date = $this->handle->query($sql,$wherestr['value'], $this->database);
+        $date = $this->handle->query($sql,$wherestr['value'] + $val_arr, $this->database);
 
         return $date;
     }
@@ -168,10 +185,10 @@ class PDODB
         DEBUG && debug('errorInfo',[self::$link[$database]->errorInfo()]);
         DEBUG && debug('query',[$sql]);
         $i = 1;
-        foreach ($serach as $value)
+        foreach ($serach as $key => $value)
         {
-            $query->bindValue($i, $value, self::$link[$database]::PARAM_STR);
-            DEBUG && debug('bindParam',[$i,$value]);
+            $query->bindValue(':' . $key , $value, self::$link[$database]::PARAM_STR);
+            DEBUG && debug('bindParam',[':' . $key ,$value]);
             $i++;
         }
         $query->execute();
@@ -198,15 +215,15 @@ class PDODB
             }
             if ($value[1] == 'in' || $value[1] == 'not in') {
                 $strarr = explode(',', $value[2]);
-                foreach ($strarr as &$val) {
-                    $where_arr[] = $val;
-                    $val = '?';
+                foreach ($strarr as $k => &$val) {
+                    $where_arr[$value[0] . $k] = $val;
+                    $val = ':' . $value[0] . $k;
                 }
                 $str = implode(',', $strarr);
                 $arr[]  = "`{$value[0]}` {$value[1]} (" . $str . ")" ;
             } else {
-                $arr[] = "`{$value[0]}` {$value[1]} ? ";
-                $where_arr[] = $value[2];
+                $arr[] = "`{$value[0]}` {$value[1]} :{$value[0]} ";
+                $where_arr[$value[0]] = $value[2];
             }
 
 
