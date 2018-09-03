@@ -1,7 +1,7 @@
 <?php
 
 define('BASE_PATH', dirname(dirname(__FILE__)));
-define('DEBUG', true);
+define('DEBUG', false);
 
 // composer
 require '../vendor/autoload.php';
