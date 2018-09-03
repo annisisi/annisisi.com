@@ -22,8 +22,18 @@ class ControllersIndex
         is_login();
         $page = INPUT::getDate('page', '1');
         $num = INPUT::getDate('num', '20');
+        $type = INPUT::getDate('type', '1');
 
-        $lists = $this->client->adminindex($page, $num);
+        $lists = $this->client->adminindex($page, $num, $type);
+
+        $state_arr = [0 => '草稿', 1 => '展示', 2 => '隐藏', 3 => '删除' ];
+        $index_state_arr = [0 => '不展示',  1 => '展示'];
+        foreach ($lists['lists'] as &$value)
+        {
+            $value['state'] = $state_arr[$value['state']];
+            $value['index_state'] = $index_state_arr[$value['index_state']];
+        }
+
         Share::ShowSucc(['tpl' => 'admin.index','data' => $lists], 'html');
     }
 
@@ -71,6 +81,26 @@ class ControllersIndex
         }
 
         echo '成功,3秒返回';
+        header("refresh:3;url=http://" . HTTP_HOST . '/index');
+    }
+
+    public function deletedate()
+    {
+        is_login();
+        $id = INPUT::getDate('id', '0');
+        if ($id <= 0) {
+            echo '失败,3秒返回';
+            header("refresh:3;url=http://" . HTTP_HOST . '/index');
+        }
+        $serach = [
+            'state' => 3,
+        ];
+        $res = $this->client->updatedata($id, $serach);
+        if ($res === false) {
+            echo '失败,3秒返回';
+        } else {
+            echo '成功,3秒返回';
+        }
         header("refresh:3;url=http://" . HTTP_HOST . '/index');
     }
 

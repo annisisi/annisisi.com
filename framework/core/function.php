@@ -37,7 +37,7 @@ class INPUT
             return $deful;
         }
 
-        if (empty($_REQUEST[$key])) {
+        if (!isset($_REQUEST[$key])) {
             return $deful;
         }
         return $_REQUEST[$key];

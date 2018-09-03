@@ -4,9 +4,6 @@ return [
         'index' => 'Index@index',
         'login' => 'User@login',
         'edit' => 'Index@edit',
-        'create' => 'Index@create',
-        'update' => 'Index@update',
-        'delete' => 'About@delete',
         'imglist' => 'Img@index',
         'img/upload' => 'Img@upload',
     ],
@@ -15,5 +12,6 @@ return [
         'edit' => 'Index@editdata',
         'img/delete' => 'Img@delete',
         'img/upload' => 'Img@uploaddata',
+        'delete' => 'Index@deletedate'
     ],
 ];

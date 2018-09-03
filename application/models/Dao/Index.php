@@ -21,12 +21,11 @@ class Index extends IndexImpl
 
 
     //后台列表
-    public function adminindex($page = 1, $num = 20)
+    public function adminindex($page = 1, $num = 20, $type)
     {
 
         $serach = [
-            ['state','=','1'],
-            ['index_state','=','1'],
+            ['state','=', $type],
         ];
         $lists = $this->lists($serach, $page, $num);
 
