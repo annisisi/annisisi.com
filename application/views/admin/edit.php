@@ -63,8 +63,8 @@
 
     <script type="text/javascript">
         window.onload=function(){
-            document.getElementById('state').value="<?= isset($data['data']['lists']['state']) ? $data['data']['state'] : 1 ?>";
-            document.getElementById('index_state').value="<?= isset($data['data']['index_state']) ? $data['data']['lists']['index_state'] : 1 ?>";
+            document.getElementById('state').value="<?= isset($data['data']['lists']['state']) ? $data['data']['lists']['state'] : 1 ?>";
+            document.getElementById('index_state').value="<?= isset($data['data']['lists']['index_state']) ? $data['data']['lists']['index_state'] : 1 ?>";
         }
 
         function beforeSubmit(form) {
@@ -96,9 +96,23 @@
             if (value == 'img') {
                 document.getElementsByName('img')[0].value = 'http://www.annisisi.com/uploads/' + txt;
             } else {
-                document.getElementsByName('text')[0].value =                 document.getElementsByName('text')[0].value += "<p><img src=\"uploads/" + txt + "\" alt=\"无法显示\"></p>";
+                var str = "<p><img src=\"uploads/" + txt + "\" alt=\"无法显示\"></p>";
+                AddContent(str);
             }
             return false;
+        }
+
+        function AddContent(str) {
+            var lastInput = document.getElementsByName('text')[0];
+            if (lastInput) {
+                lastInput.focus();
+            }
+            if (typeof document.selection != "undefined") {
+                document.selection.createRange().text = str;
+            }
+            else {
+                lastInput.value = lastInput.value.substr(0, lastInput.selectionStart) + str + lastInput.value.substring(lastInput.selectionStart, lastInput.value.length);
+            }
         }
     </script>
     <script src="js/addimg.js"></script>
