@@ -3,7 +3,7 @@
     <style type="text/css">
         img {
             width: 50px; //控制图片的宽度
-        heigth: 50px; //控制图片的高度
+            heigth: 50px; //控制图片的高度
         }
     </style>
 </head>

@@ -4,7 +4,7 @@
 <body>
 <?php include("head.php"); ?>
 <div align="center">
-    <form method="post" >
+    <form method="post" onSubmit="return beforeSubmit(this)">
 
         <input type="text" name="id" placeholder="id" value="<?= $data['data']['id']?>" style="display: none" />
         <input type="text" name="title" placeholder="标题" value="<?= isset($data['data']['title']) ? $data['data']['title'] : ''?>" />
@@ -31,6 +31,20 @@
     window.onload=function(){
         document.getElementById('state').value="<?= isset($data['data']['state']) ? $data['data']['state'] : 1 ?>";
     };
+
+    function beforeSubmit(form) {
+        if (form.title.value == '') {
+            alert('标题不能为空！');
+            form.title.focus();
+            return false;
+        }
+        if (form.text.value == '') {
+            alert('内容不能为空！');
+            form.text.focus();
+            return false;
+        }
+        return true;
+    }
 </script>
 
 </html>
