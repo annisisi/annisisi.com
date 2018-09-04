@@ -31,7 +31,7 @@ class ControllersUser
 
 
     //列表
-    public function logindata()
+    public function loginData()
     {
         $value = md5("admininfo");
         $logindata = $_COOKIE;

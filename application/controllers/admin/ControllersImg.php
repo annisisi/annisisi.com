@@ -47,7 +47,7 @@ class ControllersImg
     }
 
 
-    public function uploaddata()
+    public function uploadData()
     {
         is_login();
         $file = $_FILES['myfile'];

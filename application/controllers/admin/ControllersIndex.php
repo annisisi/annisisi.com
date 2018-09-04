@@ -24,7 +24,7 @@ class ControllersIndex
         $num = INPUT::getDate('num', '20');
         $type = INPUT::getDate('type', '1');
 
-        $lists = $this->client->adminindex($page, $num, $type);
+        $lists = $this->client->adminIndex($page, $num, $type);
 
         $state_arr = [0 => '草稿', 1 => '展示', 2 => '隐藏', 3 => '删除' ];
         $index_state_arr = [0 => '不展示',  1 => '展示'];
@@ -47,14 +47,14 @@ class ControllersIndex
         if ($id <= 0) {
             $lists = [];
         } else {
-            $lists = $this->client->adminone($id);
+            $lists = $this->client->adminOne($id);
         }
 
         Share::ShowSucc(['tpl' => 'admin.edit','data' => $lists], 'html');
     }
 
     //添加
-    public function editdata()
+    public function editData()
     {
         is_login();
         $state = INPUT::getDate('state', '0');
@@ -77,14 +77,14 @@ class ControllersIndex
         if ($id <= 0) {
             $this->client->edit($serach);
         } else {
-            $this->client->updatedata($id, $serach);
+            $this->client->updateData($id, $serach);
         }
 
         echo '成功,3秒返回';
         header("refresh:3;url=http://" . HTTP_HOST . '/index');
     }
 
-    public function deletedate()
+    public function deleteDate()
     {
         is_login();
         $id = INPUT::getDate('id', '0');
@@ -95,7 +95,7 @@ class ControllersIndex
         $serach = [
             'state' => 3,
         ];
-        $res = $this->client->updatedata($id, $serach);
+        $res = $this->client->updateData($id, $serach);
         if ($res === false) {
             echo '失败,3秒返回';
         } else {

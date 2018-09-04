@@ -6,12 +6,14 @@ return [
         'edit' => 'Index@edit',
         'imglist' => 'Img@index',
         'img/upload' => 'Img@upload',
+        'personal' => 'Per@getDate',
     ],
     'POST' => [
-        'login' => 'User@logindata',
-        'edit' => 'Index@editdata',
+        'login' => 'User@loginData',
+        'edit' => 'Index@editData',
         'img/delete' => 'Img@delete',
-        'img/upload' => 'Img@uploaddata',
-        'delete' => 'Index@deletedate'
+        'img/upload' => 'Img@uploadData',
+        'delete' => 'Index@deleteDate',
+        'personal' => 'Per@updateDate',
     ],
 ];

@@ -71,6 +71,12 @@
 
 		<div class="page-content">
 			<h1 class="mb0"><?= $data['data']['title'];?></h1>
+
+            <div class="meta">
+                <?php foreach ($data['data']['label'] as $value) {?>
+                    <a href="#"><?= $value; ?></a>,
+                <?php } ?>
+            </div>
             <?= $data['data']['text'];?>
 		</div>
 

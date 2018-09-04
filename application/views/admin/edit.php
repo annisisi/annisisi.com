@@ -6,7 +6,7 @@
         <div align="center">
             <form method="post" >
                 <?php if (isset($data['data']['id'])) {?>
-                    <input type="text" name="title" placeholder="标题" value="<?= $data['data']['id']?>" style="display: none" />
+                    <input type="text" name="id" placeholder="id" value="<?= $data['data']['id']?>" style="display: none" />
                 <?php } ?>
                 <input type="text" name="title" placeholder="标题" value="<?= isset($data['data']['title']) ? $data['data']['title'] : ''?>" />
                 </br>
@@ -25,7 +25,7 @@
                     <option value="1">展示</option>
                 </select>
                 </br>
-                <textarea name="text" placeholder="内容" rows="12" cols="100" warp="virtual" value="<?= isset($data['data']['text']) ? $data['data']['text'] : ''?>" ></textarea>
+                <textarea name="text" placeholder="内容" rows="12" cols="100" warp="virtual" ><?= htmlspecialchars(isset($data['data']['text']) ? $data['data']['text'] : '') ?></textarea>
                 </br>
                 <button type="submit" >提交</button>
             </form>

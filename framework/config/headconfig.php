@@ -3,10 +3,10 @@ $head = [
     'data' => [
         '主页管理' => [
             '关于我' => [
-                'href' => ''
+                'href' => '/personal?type=about'
             ],
             '联系我' => [
-                'href' => ''
+                'href' => '/personal?type=contact'
             ],
         ],
 

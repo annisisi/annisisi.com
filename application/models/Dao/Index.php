@@ -21,7 +21,7 @@ class Index extends IndexImpl
 
 
     //后台列表
-    public function adminindex($page = 1, $num = 20, $type)
+    public function adminIndex($page = 1, $num = 20, $type)
     {
 
         $serach = [
@@ -54,7 +54,7 @@ class Index extends IndexImpl
     }
 
     //添加
-    public function updatedata($id, $attributes)
+    public function updateData($id, $attributes)
     {
         $serach = [
             ['id','=',$id],
@@ -65,7 +65,7 @@ class Index extends IndexImpl
     }
 
     //编辑页获取数据啊
-    public function adminone($id)
+    public function adminOne($id)
     {
         $serach = [
             ['id','=',$id],

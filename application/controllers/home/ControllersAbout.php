@@ -16,10 +16,12 @@ class ControllersAbout
 
 
     //主页
-    public function About()
+    public function about()
     {
-        $list = $this->client->about();
-        Share::ShowSucc(['tpl' => 'home.about','data' => $list[0]], 'html');
+        $data = $this->client->about();
+        $list = $data[0];
+        $list['label'] = explode(',', $list['label']);
+        Share::ShowSucc(['tpl' => 'home.about','data' => $list], 'html');
     }
 
 
