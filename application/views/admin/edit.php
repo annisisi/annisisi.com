@@ -104,21 +104,6 @@
             document.getElementsByName('text')[0].value += txt;
             return false;
         }
-        var img_button = document.getElementById("img_button");
-        img_button.onclick = function(){
-            document.getElementsByName("addimglist").onclick= function(){
-                addimg(this.id);
-            };
-            return false;
-        }
-
-        var text_button = document.getElementById("text_button");
-        text_button.onclick = function(){
-            document.getElementsByName("addimglist").onclick= function(){
-                addtext(this.id);
-            };
-            return false;
-        }
     </script>
     <script src="js/addimg.js"></script>
 </html>
