@@ -19,7 +19,7 @@
 
         <?php foreach ($data['data'] as $value) { ?>
             <tr>
-                <td><img src="http://<?= HTTP_HOST ?>/uploads/<?= $value ?>"></td>
+                <td><img src="http://www.annisisi.com/uploads/<?= $value ?>"></td>
                 <td>http://www.annisisi.com/uploads/<?= $value ?></td>
                 <td>
                     <form method="post" action="img/delete" name="<?= $value ?>" id="<?= $value ?>" >

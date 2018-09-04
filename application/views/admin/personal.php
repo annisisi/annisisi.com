@@ -45,7 +45,7 @@
         </tr>
         <?php foreach ($data['data']['img_lists'] as $value) { ?>
             <tr>
-                <td><img src="http://<?= HTTP_HOST ?>/uploads/<?= $value ?>"></td>
+                <td><img src="http://www.annisisi.com/uploads/<?= $value ?>"></td>
                 <td>
                     <button name="addimglist" id="<?= $value ?>" onclick="return addtype(this.id);">添加</button>
                 </td>
