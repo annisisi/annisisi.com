@@ -4,10 +4,7 @@
             table{background:#ffffee;}
 
             #linkurl,#linkname,#savelink{width:100px;}
-            img {
-                width: 50px; //控制图片的宽度
-            heigth: 50px; //控制图片的高度
-            }
+            #login table{width:100%;}#login table td{width:50%;text-align:center;}#login table td img{width: 50px; heigth: 50px;}
         </style>
     </head>
     <body>

@@ -38,6 +38,8 @@ function createdialog(width,height,bodycontent,title,removeable){
     dialogtitle.style.cssText = "font-size:16px;float:left;display:block;margin:4px;line-height:20px;";
     dialogclose.style.cssText  = "float:right;display:block;margin:4px;line-height:20px;";
     closeaction.style.cssText = "height:20px;width:24px;border-width:1px;"+"background-image:url(images/close.png);cursor:pointer;";
+
+
     /*为窗口元素注册事件*/
     var dialogleft = parseInt(dialog.style.left);
     var dialogtop = parseInt(dialog.style.top);
