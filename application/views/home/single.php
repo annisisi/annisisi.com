@@ -38,10 +38,6 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Superfish -->
-	<link rel="stylesheet" href="css/superfish.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
 
 	<link rel="stylesheet" href="css/style.css">
 

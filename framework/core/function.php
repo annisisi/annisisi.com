@@ -29,6 +29,22 @@ function is_login()
     }
 }
 
+
+function imglist()
+{
+    $lists = [];
+    $handler = opendir(UPLOADS);//当前目录中的文件夹下的文件夹
+    while( ($filename = readdir($handler)) !== false ) {
+        if ($filename != "." && $filename != ".." ) {
+            if (stripos($filename, '.png') || stripos($filename, '.jpg') || stripos($filename, '.jpeg') || stripos($filename, '.gif')) {
+                $lists[] = $filename;
+            }
+        }
+    }
+    closedir($handler);
+    return $lists;
+}
+
 class INPUT
 {
     public static function getDate($key = null, $deful = null)

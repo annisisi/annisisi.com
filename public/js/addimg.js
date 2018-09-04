@@ -1,4 +1,4 @@
-function createdialog(width,height,bodycontent,title,removeable,type){
+function createdialog(width,height,bodycontent,title,removeable){
     /*创建窗口的组成元素*/
     var dialog = document.createElement("div");
     var dialogtitlebar= document.createElement("div");
@@ -78,6 +78,8 @@ var here = document.getElementById("here");
 var login = document.getElementById("login");
 var clickhere = document.getElementById("clickhere");
 function addimg(type){
-    here.appendChild(createdialog(400,95+30,login,"图片",true,type));
+    here.appendChild(createdialog(400,95+30,login,"图片",true));
+    here.setAttribute('value',type);
+
     return false;
 }

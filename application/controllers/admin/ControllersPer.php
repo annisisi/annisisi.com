@@ -19,7 +19,11 @@ class ControllersPer
     {
         is_login();
         $type = INPUT::getDate('type', 'about');
-        $data = $this->client->getDate($type);
+        $lists = $this->client->getDate($type);
+
+
+        $data['img_lists'] = imglist();
+        $data['lists'] = $lists;
         Share::ShowSucc(['tpl' => 'admin.personal', 'data' => $data], 'html');
     }
 

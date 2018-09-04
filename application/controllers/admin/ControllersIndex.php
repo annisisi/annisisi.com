@@ -50,7 +50,9 @@ class ControllersIndex
             $lists = $this->client->adminOne($id);
         }
 
-        Share::ShowSucc(['tpl' => 'admin.edit','data' => $lists], 'html');
+        $data['img_lists'] = imglist();
+        $data['lists'] = $lists;
+        Share::ShowSucc(['tpl' => 'admin.edit','data' => $data], 'html');
     }
 
     //添加
@@ -103,6 +105,7 @@ class ControllersIndex
         }
         header("refresh:3;url=http://" . HTTP_HOST . '/index');
     }
+
 
 }
 
