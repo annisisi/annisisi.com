@@ -1,0 +1,87 @@
+
+优惠券使用时间
+优惠券使用金额
+优惠券使用项目
+优惠券使用规则
+优惠券领取规则
+优惠券数量
+
+
+
+
+id 
+name 		 //活动名称
+type 		 //优惠券类型  （满减、折扣、免息、随机立减、红包...）
+action   	 //优惠券描述
+total   	 //优惠券数量
+start_time   //活动开始时间
+end_time     //活动结束时间
+coupon_num_day 		//券有效天数
+coupon_start_time   //优惠券开始时间
+coupon_end_time     //优惠券结束时间
+
+repayment_or_loan			 //借款和还款
+principal_or_interest	     //本金和利息
+p_discount   //优惠折扣
+p_money		 //优惠金额
+min_money    //最小金额
+mix_money    //最大金额
+
+loan_num     //借款次数
+overdue_day  //逾期天数
+advance_day  //提前还款 
+is_period    //是否分期（不分期，分期，所有分期）
+period_num   //分期数量
+period       //分期那一期还款
+status  	 //状态(上线、下线)
+
+ctime
+mtime
+
+
+
+
+
+用户优惠券表
+id
+uid
+c_id    //优惠券id
+c_type  //优惠券类型
+status  //状态
+real_money   //实际优惠金额
+coupon_end_time    //优惠券结束时间
+ctime
+mtime
+
+
+CREATE TABLE `user_coupon` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `uid` bigint(20) NOT NULL COMMENT '用户id',
+  `c_id` int(11) DEFAULT NULL COMMENT '优惠券id',
+  `c_type` int(4) NOT NULL DEFAULT '0' COMMENT '优惠券类型',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '优惠券状态0未使用1已使用2已过期',
+  `real_money` bigint(20) NOT NULL DEFAULT '0' COMMENT '实际优惠金额',
+  `coupon_end_time` int(11) NOT NULL DEFAULT '0' COMMENT '优惠券到期时间',
+  `ctime` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `mtime` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
+   PRIMARY KEY (`id`),
+   KEY `uid` (`uid`),
+   KEY `status` (`status`),
+   KEY `coupon_end_time` (`coupon_end_time`),
+   KEY `ctime` (`ctime`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 
+
+
+
+
+
+红包
+
+满减券
+折扣券
+
+抵扣手续费
+抵扣还款
+
+
+
